@@ -1,0 +1,7 @@
+rule javac
+  command = javac $in
+
+build sort/Main.class: javac sort/Main.java
+build sort/InsertionSort.class: javac sort/InsertionSort.java
+build sort/Quicksort.class: javac sort/Quicksort.java
+build sort/SquareRootSort.class: javac sort/SquareRootSort.java

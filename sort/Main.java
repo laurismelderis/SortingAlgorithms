@@ -11,15 +11,17 @@ public class Main{
     	Quicksort quickSort = new Quicksort();
 		InsertionSort insertionSort = new InsertionSort();
 		SquareRootSort squareRootSort = new SquareRootSort();
+		QuicksortRecursion quicksortR = new QuicksortRecursion();
     	insertRandomVal2D(unsortedArr, 0, 100);
     	outputArr(unsortedArr[0]);
-    	System.out.println("Nr  Quicksort       InsertionSort   SquareRootSort");
+    	System.out.println("Nr  Quicksort       InsertionSort   SquareRootSort  QuicksortWithRecursion");
     	for (int i = 0; i < unsortedArr.length; i++){
 			sortedArr[i] = quickSort.sort(unsortedArr[i].clone());
 			sortedArr[i] = insertionSort.sort(unsortedArr[i].clone());
 			sortedArr[i] = squareRootSort.sort(unsortedArr[i].clone());
-			System.out.printf("% d. %11.9fsec  %11.9fsec  %11.9fsec\n",
-			(i+1), quickSort.time, insertionSort.time, squareRootSort.time);
+			sortedArr[i] = quicksortR.sort(unsortedArr[i].clone());
+			System.out.printf("% d. %11.9fsec  %11.9fsec  %11.9fsec  %11.9fsec\n",
+			(i+1), quickSort.time, insertionSort.time, squareRootSort.time, quicksortR.time);
 		}
 	}
 	private static int[][] cloneArrays(int[][] arrays) {

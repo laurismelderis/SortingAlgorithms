@@ -4,35 +4,9 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Quicksort {
-	private int [][] arrs;
-	public Quicksort(int[][] arrs){
-		this.arrs = arrs;
-	}
-	public void result (){
-		// int count = randomNum(5, 12);
-		// int arr[] = new int[count];
-		// for (int i = 0; i < count;i++){
-		// 	arr[i] = randomNum(-100, 100);
-		// }
-		// outputArr(arr);
-		// quickSort(arr);
-		// outputArr(arr);
-		int count = 0;
-    	System.out.println("\nQuicksort algorithm using " + arrs.length
-    		+ " arrays: ");
-    	for (int []arr: arrs){
-    		System.out.println("\nArray ("+ arr.length +"): ");
-			outputArr(arr);
-			long t0 = System.nanoTime();
-    		quickSort(arr);
-    		long t1 = System.nanoTime();
-    		System.out.println("Sorted: ");
-    		outputArr(arr);
-    		System.out.printf("Sorting time: %.9f seconds taken\n", (double)((t1-t0)/Math.pow(10, 9)));
-    		count++;
-    	}
-	}
-	public static void quickSort(int[] a){
+	public static double time = 0;
+	public static int[] sort(int[] a){
+		long t0 = System.nanoTime();
 		int N = a.length;
 		int prev = 0;
 		int median = N/2;
@@ -72,14 +46,10 @@ public class Quicksort {
 				r = j;
 			} while(I < r);
 		} while(stackpos > 0);
+		long t1 = System.nanoTime();
+		time = (double)((t1 - t0)/Math.pow(10, 9));
+		return a;
 	}
-	public static void outputArr(int []arr){
-		for (int i = 0; i < arr.length; i++){
-			System.out.print(arr[i] + " ");
-		}
-		System.out.println();
-	}
-
 	public static int randomNum(int minvalue, int maxvalue){
 		Random rand = new Random();
 		return rand.nextInt((maxvalue+1)-minvalue)+minvalue;

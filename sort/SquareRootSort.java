@@ -1,27 +1,9 @@
 package sort;
 
 public class SquareRootSort {
-	public static int[][] arr;
-	public SquareRootSort (int [][]array){
-		arr = array;
-	}
-	public static void result(){
-		System.out.println("SquareRootSort:\n");
-		for (int []a: arr){
-			System.out.println("Before:");
-			for (int i = 0; i < a.length; i++){
-				System.out.print(a[i] + " ");
-			}
-			int []n = sort(a);
-			System.out.println("\nAfter:");
-			for (int i = 0; i < n.length; i++){
-				System.out.print(n[i] + " ");
-			}
-			System.out.println();
-		}
-		System.out.println("------");
-	}
+	public static double time = 0;
 	public static int[] sort(int []a){
+		long t0 = System.nanoTime();
 		int N = a.length;
 		int gCnt = (int)Math.ceil(Math.sqrt(N));
 		int gLen = (int)Math.sqrt(N);
@@ -67,6 +49,8 @@ public class SquareRootSort {
 		for (int i = 0; i < N; i++) {
 			a[i] = b[i];
 		}
+		long t1 = System.nanoTime();
+		time = (double)((t1-t0)/Math.pow(10, 9));
 		return a;
 	}
 	public static int minVal(int []arr) {

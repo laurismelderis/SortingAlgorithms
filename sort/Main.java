@@ -3,17 +3,24 @@ package sort;
 import java.util.Arrays;
 import java.util.Random;
 
-public class Main {
+public class Main{
 	public static void main(String[] args){
-		int [][]arr = {new int[10], new int[25], new int [50],
+		int [][]unsortedArr = {new int[10], new int[25], new int [50],
     		new int[75], new int[100], new int[150]};
-    	insertRandomVal2D(arr, 0, 100);
-		Quicksort quickSort = new Quicksort(cloneArrays(arr));
-		InsertionSort insertionSort = new InsertionSort(cloneArrays(arr));
-		SquareRootSort squareRootSort = new SquareRootSort(cloneArrays(arr));
-		squareRootSort.result();
-		// quickSort.result();
-		// insertionSort.result();
+    	int [][]sortedArr = new int [unsortedArr.length][];
+    	Quicksort quickSort = new Quicksort();
+		InsertionSort insertionSort = new InsertionSort();
+		SquareRootSort squareRootSort = new SquareRootSort();
+    	insertRandomVal2D(unsortedArr, 0, 100);
+    	outputArr(unsortedArr[0]);
+    	System.out.println("Nr  Quicksort       InsertionSort   SquareRootSort");
+    	for (int i = 0; i < unsortedArr.length; i++){
+			sortedArr[i] = quickSort.sort(unsortedArr[i].clone());
+			sortedArr[i] = insertionSort.sort(unsortedArr[i].clone());
+			sortedArr[i] = squareRootSort.sort(unsortedArr[i].clone());
+			System.out.printf("% d. %11.9fsec  %11.9fsec  %11.9fsec\n",
+			(i+1), quickSort.time, insertionSort.time, squareRootSort.time);
+		}
 	}
 	private static int[][] cloneArrays(int[][] arrays) {
 		arrays = arrays.clone();
@@ -32,5 +39,11 @@ public class Main {
 	public static int randomNumber(int min, int max){
 		Random rand = new Random();
 		return rand.nextInt((max+1)-min)+min;
+	}
+	public static void outputArr(int []a){
+		for (int i: a){
+			System.out.print(i + " ");
+		}
+		System.out.println();
 	}
 }
